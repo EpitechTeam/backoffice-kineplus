@@ -1,0 +1,23 @@
+<mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center" class="container">
+  <div fxLayout="row" fxLayoutAlign="space-around center">
+    <div *ngIf="user">
+      <button mat-icon-button (click)="toggleSidenav()">
+        <mat-icon aria-label="Menu">menu</mat-icon>
+      </button>
+    </div>
+
+    <a fxLayout="row" routerLink="/">
+      <h1 class="text-logo-kine">Kine</h1>
+      <h1 class="text-logo-plus">+</h1>
+    </a>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-around center" *ngIf="user">
+    <h6 *ngIf="user.isLogged">{{user.login}}</h6>
+    <button mat-icon-button (click)="goToProfile()">
+      <mat-icon aria-label="Profile">account_circle</mat-icon>
+    </button>
+    <button mat-icon-button (click)="logout()">
+      <mat-icon aria-label="Settings">logout</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>

@@ -1,0 +1,30 @@
+a {
+  text-decoration: none !important;
+  color: white;
+}
+
+.container {
+  position: static;
+}
+
+.text-logo-kine {
+  color: white;
+}
+
+.text-logo-plus {
+  color: red;
+}
+
+a:hover, a:active{
+  color: lightgray;
+}
+
+.nav-caption{
+  display: inline-block;
+  padding-left: 6px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}

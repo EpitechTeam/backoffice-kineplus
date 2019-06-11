@@ -1,0 +1,36 @@
+<div fxFlexFill fxLayout="column" fxLayoutAlign="center center">
+  <div fxFlex="75" fxLayout="column">
+    <mat-card fxLayout="column" fxLayoutAlign="center center">
+      <mat-card-header>
+        <mat-card-title>Sign in</mat-card-title>
+      </mat-card-header>
+
+      <div class="warn" *ngIf="authenticationFailed">
+        <button type="button" class="close" aria-label="Close" (click)="authenticationFailed = false"><span
+          aria-hidden="true">&#215;</span></button>
+        Nope, try again.
+      </div>
+
+      <form (ngSubmit)="authenticate()" #loginForm="ngForm">
+        <div fxLayout="column" fxLayoutAlign="space-between">
+          <label for="login">Login</label>
+          <input id="login" class="form-control" name="login" [(ngModel)]="credentials.email" required
+                 #loginCtrl="ngModel">
+          <div *ngIf="loginCtrl.control.dirty && loginCtrl.control.hasError('required')">Login is required</div>
+        </div>
+
+        <div fxLayout="column">
+          <label for="password">Password</label>
+          <input id="password" class="form-control" type="password" name="password" [(ngModel)]="credentials.password"
+                 required #passwordCtrl="ngModel">
+          <div *ngIf="passwordCtrl.control.dirty && passwordCtrl.control.hasError('required')">Password is required
+          </div>
+        </div>
+
+        <mat-card-footer fxLayoutAlign="center">
+          <button mat-raised-button color="accent" type="submit" [disabled]="loginForm.invalid">LOGIN</button>
+        </mat-card-footer>
+      </form>
+    </mat-card>
+  </div>
+</div>

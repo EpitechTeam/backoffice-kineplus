@@ -1,0 +1,32 @@
+<div fxFlexFill fxLayout="column" fxFlexAlign="center center" *ngIf="!user; else loggedIn">
+  <div fxFlex="75" fxLayoutAlign="center center">
+    <div fxLayout="column" fxLayoutGap="16px">
+      <button mat-raised-button color="accent" routerLink="/login">LOGIN</button>
+      <button mat-raised-button color="accent" routerLink="/register">REGISTER</button>
+      <span></span>
+    </div>
+  </div>
+</div>
+
+<ng-template #loggedIn>
+  <div fxFlex fxLayout="row" fxFlexAlign="space-evenly" class="container">
+    <mat-card fxFlex="20" class="card" *ngFor="let preview of previews">
+      <mat-card-header class="card-header">
+        <mat-icon mat-card-avatar class="example-header-image" fxFlexAlign="center" color="accent">{{preview.icon}}</mat-icon>
+        <mat-card-title>{{preview.title}}</mat-card-title>
+        <mat-card-subtitle>{{preview.description}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <!--<img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">-->
+      <mat-card-content class="card-content">
+        <div fxLayout="column" fxFlexAlign="center center" class="card-wrapper">
+          <h2>{{preview.value}}</h2>
+        </div>
+      </mat-card-content>
+      <!--<mat-card-actions>-->
+        <!--<button mat-button>LIKE</button>-->
+        <!--<button mat-button>SHARE</button>-->
+      <!--</mat-card-actions>-->
+    </mat-card>
+  </div>
+</ng-template>
