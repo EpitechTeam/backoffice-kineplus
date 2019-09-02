@@ -1,9 +1,9 @@
 pipeline {
   agent any
   stages {
-    stage('Build') {
+    stage('Dependencies') {
       steps {
-        build 'React Build'
+        build(job: 'npm install', wait: true)
       }
     }
   }
