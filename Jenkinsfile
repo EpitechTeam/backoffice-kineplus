@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'docker-compose -f docker-compose.yml up -d --build'
+        sh 'echo \'Jenkins is building the project...\''
       }
     }
   }
