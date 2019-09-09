@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'echo \'Jenkins is building the project...\''
+        sh echo 'Build Success 🚀'
       }
     }
   }
