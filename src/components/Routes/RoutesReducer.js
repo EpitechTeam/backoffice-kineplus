@@ -7,8 +7,8 @@ const initialState = {
 const routesReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'REDIRECT': {
-            history.push();
             state = {...state, path: action.payload};
+            history.push(action.payload);
             break;
         }
         default: return state;

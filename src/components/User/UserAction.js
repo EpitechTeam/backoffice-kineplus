@@ -6,11 +6,11 @@ export function checkLogin(email, password) {
 
 export function logoutUser() {
     return function(dispatch) {
-        dispatch(redirect('/login'));
         dispatch(authenticateUser(false));
+        dispatch(redirect('/login'));
     }
 }
 
 export function authenticateUser(authenticated) {
-    return { type: 'AUTHENTICATED', payload: authenticated }
+    return { type: 'AUTHENTICATE', payload: authenticated }
 }

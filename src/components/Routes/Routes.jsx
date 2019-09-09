@@ -8,21 +8,22 @@ import {connect} from "react-redux";
 
 function NoPage() {
     return (
-        <div>
+        <Grid container>
             Error 404: Page Not Found
-        </div>
+        </Grid>
     );
 }
 
 function PrivateRoute({auth, path, component}) {
-    if (auth)
+    if (auth || component === NoPage )
         return (<Route exact path={path} component={component}/>);
     return (<Route exact path={'/login'} component={Login}/>);
 }
 
 function Routes(props) {
     return (
-        <Grid container direction={'column'}>
+        <Grid container direction={'column'} justify="center"
+              style={{width: '100%', height: '100%'}}>
             <Router>
                 <Switch>
                     <PrivateRoute path="/" component={Home} auth={props.user.authenticated}/>

@@ -10,14 +10,8 @@ function App() {
     return (
         <Provider store={store}>
             <ThemeProvider theme={theme}>
-                <div>
-                    <AppMenu/>
-                    <div style={{width: '100%', height: '100%'}}>
-                        <main>
-                            <Routes />
-                        </main>
-                    </div>
-                </div>
+                <AppMenu/>
+                <Routes />
             </ThemeProvider>
         </Provider>
     );
