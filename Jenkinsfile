@@ -6,10 +6,10 @@ pipeline {
 
   }
   stages {
-    stage('Test') {
-     steps {
-      sh 'npm run build'
-     }
+    stage('Build') {
+      steps {
+        sh echo 'Build Success 🚀'
+      }
     }
   }
 }
