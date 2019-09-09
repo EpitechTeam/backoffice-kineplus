@@ -7,7 +7,7 @@ import './Login.scss'
 function Login(props) {
     return (
         <Grid container direction="column" justify="center" alignItems="center" className="login-container">
-            <Paper className="login-paper" s>
+            <Paper className="login-paper">
                 <Grid container direction="column" justify="flex-start" alignItems="center">
                     <Paper elevation={2} style={{padding: '24px', display: 'flex', justifyContent: 'center'}}>
                         <Typography variant="h5" color="textPrimary">LOGIN</Typography>

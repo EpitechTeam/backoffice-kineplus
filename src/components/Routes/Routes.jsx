@@ -3,6 +3,7 @@ import {Switch, Route} from 'react-router'
 import {BrowserRouter as Router} from "react-router-dom";
 import Login from "../Login/Login";
 import {Home} from "../Home/Home";
+import {Recovery} from "../Recovery/Recovery";
 import {Grid} from "@material-ui/core";
 import {connect} from "react-redux";
 
@@ -15,7 +16,7 @@ function NoPage() {
 }
 
 function PrivateRoute({auth, path, component}) {
-    if (auth || component === NoPage )
+    if (auth)
         return (<Route exact path={path} component={component}/>);
     return (<Route exact path={'/login'} component={Login}/>);
 }
@@ -28,7 +29,8 @@ function Routes(props) {
                 <Switch>
                     <PrivateRoute path="/" component={Home} auth={props.user.authenticated}/>
                     <PrivateRoute path="/home" component={Home} auth={props.user.authenticated}/>
-                    <PrivateRoute path="/login" component={Login} auth={props.user.authenticated}/>
+                    <PrivateRoute path="/login" component={Login} auth={true}/>
+                    <PrivateRoute path="/recovery" component={Recovery} auth={true}/>
                     <PrivateRoute component={NoPage} auth={props.user.authenticated}/>
                 </Switch>
             </Router>
