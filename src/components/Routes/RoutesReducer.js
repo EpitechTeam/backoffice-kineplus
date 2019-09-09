@@ -1,3 +1,5 @@
+import { history } from './history'
+
 const initialState = {
     path: ''
 };

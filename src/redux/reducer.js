@@ -1,8 +1,12 @@
 import { combineReducers } from 'redux'
-//import todos from './todos'
+import menu from '../components/Menu/MenuReducer'
+import routes from '../components/Routes/RoutesReducer'
+import user from '../components/User/UserReducer'
 
 const reducer = combineReducers({
-    //todos
+    menu,
+    routes,
+    user
 });
 
 export default reducer;
