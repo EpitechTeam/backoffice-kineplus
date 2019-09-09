@@ -12,4 +12,4 @@ COPY package.json /app/package.json
 RUN npm install
 
 # start app
-CMD ["npm", "start"]
+CMD ["npm", "build"]
