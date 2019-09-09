@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh echo 'Build Success 🚀'
+        sh 'docker-compose -f docker-compose.yml up -d --build'
       }
     }
   }
