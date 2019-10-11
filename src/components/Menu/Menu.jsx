@@ -17,9 +17,14 @@ function AppMenu(props) {
                                         onClick={() => props.toggleMeuDrawer(true)}>
                                 <Menu style={{color: 'white'}}/>
                             </IconButton>
-                            <Typography variant="h6" color={"textPrimary"}>
-                                Kineplus
-                            </Typography>
+                            <Grid container direction="row">
+                                <Typography variant="h5" color={"textPrimary"}>
+                                    Kine
+                                </Typography>
+                                <Typography variant="h5" style={{color: "red"}}>
+                                    +
+                                </Typography>
+                            </Grid>
                             {props.user.authenticated && (
                                 <Grid container justify="flex-end">
                                     <IconButton

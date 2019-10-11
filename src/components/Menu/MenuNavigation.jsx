@@ -1,13 +1,17 @@
 import React from "react";
 import {Divider, Drawer, List} from "@material-ui/core";
-import {Inbox, Mail, Close, AccountCircle} from "@material-ui/icons";
+import {Close, AccountCircle, Star, Home} from "@material-ui/icons";
 import {ListItem, ListItemIcon, ListItemText} from "@material-ui/core";
+
+const menuItems = [
+    {text: 'Home', icon: Home}, {text: 'Profile', icon: AccountCircle}
+];
 
 export function MenuNavigation({user, open, toggleMenu}) {
     return (
         <Drawer
             open={open}
-            oonClose={() => toggleMenu(false)}
+            onClose={() => toggleMenu(false)}
         >
             <div>
                 <ListItem button key={'Close'} onClick={() => toggleMenu(false)}>
@@ -17,19 +21,10 @@ export function MenuNavigation({user, open, toggleMenu}) {
             </div>
             <Divider />
             <List>
-                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                    <ListItem button key={text}>
-                        <ListItemIcon>{index % 2 === 0 ? <Inbox /> : <Mail />}</ListItemIcon>
-                        <ListItemText primary={text} />
-                    </ListItem>
-                ))}
-            </List>
-            <Divider />
-            <List>
-                {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                    <ListItem button key={text}>
-                        <ListItemIcon>{index % 2 === 0 ? <Inbox /> : <Mail />}</ListItemIcon>
-                        <ListItemText primary={text} />
+                {menuItems.map((item) => (
+                    <ListItem button key={item.text}>
+                        <ListItemIcon>{item.icon ? <item.icon /> : <Star />}</ListItemIcon>
+                        <ListItemText primary={item.text} />
                     </ListItem>
                 ))}
             </List>

@@ -1,4 +1,3 @@
-import {redirect} from "../Routes/RoutesAction";
 
 export function checkLogin(email, password) {
     return true;
@@ -7,7 +6,8 @@ export function checkLogin(email, password) {
 export function logoutUser() {
     return function(dispatch) {
         dispatch(authenticateUser(false));
-        dispatch(redirect('/login'));
+        //dispatch(redirect('/login'));
+        // new history push
     }
 }
 

@@ -1,7 +1,7 @@
 const initialState = {
     login: 'mcriel',
     email: 'monty.criel@epitech.eu',
-    authenticated: true
+    authenticated: false
 };
 
 const userReducer = (state = initialState, action) => {

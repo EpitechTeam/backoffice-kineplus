@@ -1,15 +1,22 @@
-# base image
-FROM node:12.2.0-alpine
+FROM node:10
 
-# set working directory
-WORKDIR /app
+WORKDIR .
 
-# add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
+COPY package.json .
 
-# install and cache app dependencies
-COPY package.json /app/package.json
 RUN npm install
 
-# start app
-CMD ["npm", "build"]
+#uncomment to debug
+# RUN npm install -g http-server
+
+COPY . ./
+
+RUN npm run build
+
+ENV PORT 82
+
+EXPOSE 82
+
+# EXPOSE 7200
+CMD ["node", "index.js"]
+# CMD http-server ../../ -p 7200 -a 0.0.0.0

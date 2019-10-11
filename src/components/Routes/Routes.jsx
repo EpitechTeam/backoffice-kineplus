@@ -1,10 +1,10 @@
 import React from "react";
-import {Switch, Route} from 'react-router'
-import {BrowserRouter as Router} from "react-router-dom";
-import Login from "../Login/Login";
-import {Home} from "../Home/Home";
-import {Grid} from "@material-ui/core";
 import {connect} from "react-redux";
+import {Switch, Route} from 'react-router'
+import {BrowserRouter as Router, Redirect} from "react-router-dom";
+import {Grid} from "@material-ui/core";
+import Login from "../Login/Login";
+import Home from "../Home/Home";
 
 function NoPage() {
     return (
@@ -14,25 +14,37 @@ function NoPage() {
     );
 }
 
-function PrivateRoute({auth, path, component}) {
-    if (auth || component === NoPage )
-        return (<Route exact path={path} component={component}/>);
-    return (<Route exact path={'/login'} component={Login}/>);
+function PrivateRoute({children, ...rest}) {
+    return (
+        <Route {...rest}>
+            { rest.auth ? children : <Redirect push to="/login" /> }
+        </Route>
+    );
 }
 
 function Routes(props) {
     return (
-        <Grid container direction={'column'} justify="center"
-              style={{width: '100%', height: '100%'}}>
-            <Router>
+        <Router>
+            <Grid container direction={'column'} justify="center" style={{width: '100%', height: '100%'}}>
                 <Switch>
-                    <PrivateRoute path="/" component={Home} auth={props.user.authenticated}/>
-                    <PrivateRoute path="/home" component={Home} auth={props.user.authenticated}/>
-                    <PrivateRoute path="/login" component={Login} auth={props.user.authenticated}/>
-                    <PrivateRoute component={NoPage} auth={props.user.authenticated}/>
+                    <Route path="/login">
+                        <Login />
+                    </Route>
+                    <PrivateRoute path="" auth={props.user.authenticated}>
+                        <Home />
+                    </PrivateRoute>
+                    <PrivateRoute path="/" auth={props.user.authenticated}>
+                        <Home />
+                    </PrivateRoute>
+                    <PrivateRoute path="/home" auth={props.user.authenticated}>
+                        <Home />
+                    </PrivateRoute>
+                    <Route path="*">
+                        <NoPage />
+                    </Route>
                 </Switch>
-            </Router>
-        </Grid>
+            </Grid>
+        </Router>
     );
 }
 
@@ -45,7 +57,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        // increment: () => dispatch({ type: 'INCREMENT' }),
+        //redirect: (path) => dispatch(redirect(path, true))
     }
 };
 
