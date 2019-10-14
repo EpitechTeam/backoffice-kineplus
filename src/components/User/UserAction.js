@@ -1,13 +1,18 @@
-
 export function checkLogin(email, password) {
-    return true;
+    return new Promise(resolve => {
+        setTimeout(() => {
+            console.log("fake api:");
+            if (email === "monty.criel@epitech.eu" && password === "dev" )
+                resolve(true);
+            else
+                resolve(false)
+        }, 2000);
+    });
 }
 
 export function logoutUser() {
     return function(dispatch) {
-        dispatch(authenticateUser(false));
-        //dispatch(redirect('/login'));
-        // new history push
+        return dispatch(authenticateUser(false));
     }
 }
 

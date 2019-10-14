@@ -7,7 +7,7 @@ function Home(props) {
     return (
         <Grid container direction="column" alignItems="center">
             <Grid item>
-                <Button variant="contained" color="secondary" onClick={() => props.login('', '')}>
+                <Button variant="contained" color="secondary">
                     <Typography variant="button" color="textPrimary">HOME</Typography>
                 </Button>
             </Grid>

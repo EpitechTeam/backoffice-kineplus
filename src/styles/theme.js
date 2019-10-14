@@ -1,11 +1,13 @@
 import { createMuiTheme } from '@material-ui/core/styles';
-import {amber, green} from "@material-ui/core/colors";
+import {green} from "@material-ui/core/colors";
 
 const theme = createMuiTheme({
     palette: {
         type: 'dark',
-        primary: green,
-        secondary: amber,
+        primary: {
+            main: '#2AB9B6'
+        },
+        secondary: green,
         textPrimary: 'white'
     }
 });

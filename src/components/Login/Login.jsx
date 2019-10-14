@@ -1,22 +1,76 @@
 import React from "react";
 import {connect} from "react-redux";
-import {Button, Grid, Paper, Typography} from "@material-ui/core";
-import {login} from "./LoginAction";
+import {Avatar, Button, Grid, Input, InputAdornment, Paper, Typography} from "@material-ui/core";
+import {Email, Lock, Visibility, VisibilityOff} from "@material-ui/icons";
+import {login, togglePasswordVisibility, updateCredential} from "./LoginAction";
 import './Login.scss'
 
+function loginUser(props) {
+    // animation start, stop with dispatch
+    props.loginUser(props.login.email, props.login.password);
+}
+
+function CredentialsInput(props) {
+    const credentialStyle = { width: '60%', margin: '6px' };
+
+    const handleChange = prop => event => {
+        props.updateCredential(prop, event.target.value)
+    };
+
+    return (
+        <Grid container direction="column" justify="space-evenly" alignItems="center">
+            <Input
+                id="email"
+                type="text"
+                value={props.login.email}
+                onChange={handleChange("email")}
+                startAdornment={
+                    <InputAdornment position="start">
+                        <Email />
+                    </InputAdornment>
+                }
+                style={credentialStyle}
+            />
+            <Input
+                id="adornment-password"
+                type={props.login.showPassword ? 'text' : 'password'}
+                value={props.login.password}
+                onChange={handleChange("password")}
+                startAdornment={
+                    <InputAdornment position="start">
+                        <Lock />
+                    </InputAdornment>
+                }
+                endAdornment={
+                    <InputAdornment position="end">
+                        <Button
+                            aria-label="toggle password visibility"
+                            onClick={() => props.showPassword(!props.login.showPassword)}
+                        >
+                            {props.login.showPassword ? <Visibility/> : <VisibilityOff/>}
+                        </Button>
+                    </InputAdornment>
+                }
+                style={credentialStyle}
+            />
+        </Grid>
+    );
+}
+
 function Login(props) {
-    console.log("Render login");
     return (
         <Grid container direction="column" justify="center" alignItems="center" className="login-container">
-            <Paper className="login-paper">
+            <Paper elevation={10} className="login-paper">
                 <Grid container direction="column" justify="flex-start" alignItems="center">
-                    <Paper elevation={2} style={{padding: '24px', display: 'flex', justifyContent: 'center'}}>
-                        <Typography variant="h5" color="textPrimary">LOGIN</Typography>
-                        <Typography variant="h5" color="textPrimary">BACKOFFICE KINEPLUS</Typography>
-                    </Paper>
+                    <Typography variant="h3" color="textPrimary">Kineplus</Typography>
+                    <Typography variant="h5" color="textPrimary">BACKOFFICE</Typography>
+                    <Avatar className="login-avatar"><Lock fontSize="large"/></Avatar>
+                    <Typography variant="h3" color="textPrimary">LOGIN</Typography>
                 </Grid>
-                <Grid container direction="column" justify="center" alignItems="center">
-                    <Button variant="contained" color="secondary" onClick={() => props.login('', '')}>
+                <Grid container direction="column" justify="space-between" alignItems="center">
+                    <CredentialsInput {...props} />
+                    <Button variant="contained" color="secondary" onClick={() => loginUser(props)}
+                            style={{width: '40%', margin: '24px'}}>
                         <Typography variant="button" color="textPrimary">LOGIN</Typography>
                     </Button>
                 </Grid>
@@ -27,13 +81,16 @@ function Login(props) {
 
 const mapStateToProps = state => {
     return {
-        user: state.user
+        user: state.user,
+        login: state.login
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        login: (email, password) => dispatch(login(email, password))
+        loginUser: (email, password) => dispatch(login(email, password)),
+        showPassword: (isVisible) => dispatch(togglePasswordVisibility(isVisible)),
+        updateCredential: (type, credential) => dispatch(updateCredential(type, credential)),
     }
 };
 

@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Redirect} from "react-router-dom";
 import {Grid} from "@material-ui/core";
 import Login from "../Login/Login";
 import Home from "../Home/Home";
+import Profile from "../Profile/Profile";
 
 function NoPage() {
     return (
@@ -30,14 +31,17 @@ function Routes(props) {
                     <Route path="/login">
                         <Login />
                     </Route>
+                    <PrivateRoute path="/home" auth={props.user.authenticated}>
+                        <Home />
+                    </PrivateRoute>s
                     <PrivateRoute path="" auth={props.user.authenticated}>
                         <Home />
                     </PrivateRoute>
                     <PrivateRoute path="/" auth={props.user.authenticated}>
                         <Home />
                     </PrivateRoute>
-                    <PrivateRoute path="/home" auth={props.user.authenticated}>
-                        <Home />
+                    <PrivateRoute path="/profile" auth={props.user.authenticated}>
+                        <Profile />
                     </PrivateRoute>
                     <Route path="*">
                         <NoPage />

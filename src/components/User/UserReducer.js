@@ -1,12 +1,20 @@
+function sessionManager() {
+    return (sessionStorage.getItem("rememberMe") === "true");
+}
+
 const initialState = {
     login: 'mcriel',
     email: 'monty.criel@epitech.eu',
-    authenticated: false
+    authenticated: sessionManager()
 };
 
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'AUTHENTICATE': {
+            if (action.payload === true)
+                sessionStorage.setItem("rememberMe", "true");
+            else
+                sessionStorage.removeItem("rememberMe");
             state = {...state, authenticated: action.payload};
             break;
         }
