@@ -19,10 +19,7 @@ function AppMenu(props) {
                             </IconButton>
                             <Grid container direction="row">
                                 <Typography variant="h5" color={"textPrimary"}>
-                                    Kine
-                                </Typography>
-                                <Typography variant="h5" style={{color: "red"}}>
-                                    +
+                                    Kineplus
                                 </Typography>
                             </Grid>
                             {props.user.authenticated && (

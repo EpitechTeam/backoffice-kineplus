@@ -1,8 +1,10 @@
 import React from "react";
 import {connect} from "react-redux";
+import {Link} from "react-router-dom";
 import {Avatar, Button, Grid, Input, InputAdornment, Paper, Typography} from "@material-ui/core";
 import {Email, Lock, Visibility, VisibilityOff} from "@material-ui/icons";
 import {login, togglePasswordVisibility, updateCredential} from "./LoginAction";
+import theme from "../../styles/theme";
 import './Login.scss'
 
 function loginUser(props) {
@@ -51,7 +53,7 @@ function CredentialsInput(props) {
                         </Button>
                     </InputAdornment>
                 }
-                style={credentialStyle}
+                style={{...credentialStyle, marginBottom: "12px"}}
             />
         </Grid>
     );
@@ -69,6 +71,9 @@ function Login(props) {
                 </Grid>
                 <Grid container direction="column" justify="space-between" alignItems="center">
                     <CredentialsInput {...props} />
+                    <Link to="/recovery" style={{color: theme.palette.primary.main}}>
+                        Forgot password?
+                    </Link>
                     <Button variant="contained" color="secondary" onClick={() => loginUser(props)}
                             style={{width: '40%', margin: '24px'}}>
                         <Typography variant="button" color="textPrimary">LOGIN</Typography>

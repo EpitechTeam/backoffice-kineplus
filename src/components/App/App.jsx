@@ -7,7 +7,6 @@ import theme from '../../styles/theme'
 import Routes from "../Routes/Routes.jsx";
 
 function App() {
-    console.log("Render!");
     return (
         <Provider store={store}>
             <ThemeProvider theme={theme}>
